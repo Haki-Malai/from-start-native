@@ -6,14 +6,14 @@ export default class Media extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false,
+            uploaded: false,
             expanded: false
         }
         this.setExpanded = this.setExpanded.bind(this);
         this.uploadFile = this.uploadFile.bind(this);
     }
     setExpanded() {
-        this.setState({expanded: !this.state.expanded})
+        this.setState({expanded: !this.state.expanded});
     }
     loadInBrowser(url) {
         Linking.openURL(url).catch(err => alert("Couldn't load page", err));
@@ -41,7 +41,7 @@ export default class Media extends React.Component {
                 .then(data => {
                     if (data.success) {
                         alert('Image uploaded successfully!');
-                        location.reload();
+                        this.setState({uploaded: true}); // Useless, but makes the component reload
                     } else {
                         alert('Something went wrong, please try again!');
                     }

@@ -18,6 +18,9 @@ export default class User extends React.Component {
             todayTasks: this.props.userData.tasks.length
         }
     }
+    componentDidMount() {
+		this.props.refreshUserData();
+    }
     render() {
         var toExpand;
         if (this.state.option === 'support') {
@@ -81,7 +84,7 @@ export default class User extends React.Component {
                             </View>
                         </View>
                         <Buttons lang={this.props.lang}></Buttons>
-                        <Options username={this.props.userData.username} lang={this.props.lang}></Options>
+                        <Options username={this.props.userData.username} lang={this.props.lang} logout={() => this.props.logout()}></Options>
                     </View>
                 </ScrollView>
                 <Navigator lang={this.props.lang} setPage={this.props.setPage} page='account'/>

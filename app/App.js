@@ -27,9 +27,10 @@ export default class App extends React.Component {
 		this.setToken = this.setToken.bind(this);
 		this.getAuthorized = this.getAuthorized.bind(this);
 		this.setUserData = this.setUserData.bind(this);
-		this.setLang = this.setLang.bind(this)
-		this.setRemember = this.setRemember.bind(this)
-		this.logout = this.logout.bind(this)
+		this.setLang = this.setLang.bind(this);
+		this.setRemember = this.setRemember.bind(this);
+		this.logout = this.logout.bind(this);
+		this.refreshUserData = this.refreshUserData.bind(this);
 	}
 
 	setRemember(bool) {
@@ -51,6 +52,35 @@ export default class App extends React.Component {
 
 	setUserData(data) {
 		this.setState({userData: data})
+	}
+
+	refreshUserData() {
+		// Authorization from saved cookie
+		var token = localStorage.getItem('token');
+		if (token) {
+			const requestOptions = {
+				method: 'POST',
+				headers: { 
+					'Content-Type': 'application/json',
+					'Accept': '*/*'
+				},
+				mode: 'cors',
+				body: JSON.stringify({access_token: token})
+			}
+
+			fetch('http://localhost:8010/proxy/', requestOptions)
+				.then(response => response.json())
+				.then(data => {
+					if (data.user_data) {
+						this.setState({userData: JSON.parse(data.user_data)});
+					} else {
+						this.setState({page: 'welcome'});
+					}
+				})
+				.catch(e => {
+					alert(e);
+				});
+		}
 	}
 
 	logout() {
@@ -129,6 +159,7 @@ export default class App extends React.Component {
 				setPage={this.setPage} 
 				setToken={this.setToken}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 			/>
 		} else if (this.state.page === 'login') {
@@ -140,6 +171,7 @@ export default class App extends React.Component {
 				setPage={this.setPage} 
 				setToken={this.setToken}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 			/>
 		} else if (this.state.page === 'signup') {
@@ -149,6 +181,7 @@ export default class App extends React.Component {
 				setPage={this.setPage} 
 				setToken={this.setToken}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 			/>
 		} else if (this.state.page === 'home') {
@@ -156,6 +189,7 @@ export default class App extends React.Component {
 				lang={this.state.lang}
 				setPage={this.setPage}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 			/>
 		} else if (this.state.page === 'earn') {
@@ -163,6 +197,7 @@ export default class App extends React.Component {
 				lang={this.state.lang}
 				setPage={this.setPage}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 				level={this.state.level}
 			/>
@@ -171,6 +206,7 @@ export default class App extends React.Component {
 				lang={this.state.lang}
 				setPage={this.setPage}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 				level={this.state.level}
 			/>
@@ -179,6 +215,7 @@ export default class App extends React.Component {
 				lang={this.state.lang}
 				setPage={this.setPage}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
 				userData={this.state.userData}
 			/>
 		} else if (this.state.page === 'account') {
@@ -190,6 +227,8 @@ export default class App extends React.Component {
 				setPage={this.setPage} 
 				username={this.state.username}
 				setUserData={this.setUserData}
+				refreshUserData={this.refreshUserData}
+				getAuthorized={this.getAuthorized}
 				userData={this.state.userData}
 			/>
 		}

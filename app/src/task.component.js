@@ -19,7 +19,7 @@ export default class Task extends React.Component {
     setPage(page) {
         this.setState({page: page});
     }
-    componentDidMount() {
+    fetchTasks() {
 		// Retrieve tasks from server
 		if (this.props.userData) {
 			const requestOptions = {
@@ -52,6 +52,11 @@ export default class Task extends React.Component {
         } else {
             alert("Couldn't retrieve user data!");
         }
+        setTimeout(() => this.fetchTasks(), 1000);
+    }
+    componentDidMount() {
+        this.fetchTasks();
+		this.props.refreshUserData();
     }
     render() {
         var toRender = [];

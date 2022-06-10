@@ -12,6 +12,9 @@ export default class Vip extends React.Component {
             userLevel: 1,
         }
     }
+    componentDidMount() {
+		this.props.refreshUserData();
+    }
     render() {
         var levels = [];
         for (let i=1; i<this.props.level.length; i++) {

@@ -24,6 +24,9 @@ export default class Earn extends React.Component {
     setMedia(media) {
         this.setState({media: media})
     }
+    componentDidMount() {
+		this.props.refreshUserData();
+    }
     render() {
         var enabled= (this.props.userData.level === this.state.page);
         var main;

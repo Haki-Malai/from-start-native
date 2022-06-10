@@ -495,8 +495,8 @@ export default StyleSheet.create({
     flexGrow: 'column',
     flexDirection: 'row',
     marginVertical: '.2em',
+    padding: '.2em',
     maxWidth: ScreenWidth/1.3,
-    alignContent: 'center'
   },
   feedPic: {
     borderRadius: '10em',

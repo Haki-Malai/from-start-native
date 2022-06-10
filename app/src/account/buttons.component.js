@@ -9,23 +9,23 @@ export default class Buttons extends React.Component {
     render() {
         return(
             <View style={styles.accountButtons}>
-                <Pressable style={styles.accountButton} onPress={() => this.props.setPage('home')} >
+                <Pressable style={styles.accountButton} onPress={() => 'do nothing'} >
                     <Image style={styles.accountPressableIcon} source={require('../../assets/account/tether.png')}/>
                     <Text style={styles.accountPressableText}>{this.props.lang==='en'? 'Funds': 'Κεφάλαια'}</Text>
                 </Pressable>
-                <Pressable style={styles.accountButton} onPress={() => this.props.setPage('earn')} >
+                <Pressable style={styles.accountButton} onPress={() => 'do nothing'} >
                     <Image style={styles.accountPressableIcon} source={require('../../assets/account/credit-card.png')}/>
                     <Text style={styles.accountPressableText}>{this.props.lang==='en'? 'Recharge': 'Επαναφόρτιση'}</Text>
                 </Pressable>
-                <Pressable style={styles.accountButton} onPress={() => this.props.setPage('vip')} >
+                <Pressable style={styles.accountButton} onPress={() => 'do nothing'} >
                     <Image style={styles.accountPressableIcon} source={require('../../assets/account/receipt.png')}/>
                     <Text style={styles.accountPressableText}>{this.props.lang==='en'? 'My bill': 'Απόδειξη'}</Text>
                 </Pressable>
-                <Pressable style={styles.accountButton} onPress={() => this.props.setPage('task')} >
+                <Pressable style={styles.accountButton} onPress={() => 'do nothing'} >
                     <Image style={styles.accountPressableIcon} source={require('../../assets/account/clock.png')}/>
                     <Text style={styles.accountPressableText}>{this.props.lang==='en'? 'Withdrawal record': 'Ιστορικό αναλήψεων'}</Text>
                 </Pressable>
-                <Pressable style={styles.accountButton} onPress={() => this.props.setPage('account')} >
+                <Pressable style={styles.accountButton} onPress={() => 'do nothing'} >
                     <Image style={styles.accountPressableIcon} source={require('../../assets/account/wallet.png')}/>
                     <Text style={styles.accountPressableText}>{this.props.lang==='en'? 'Withdrawal': 'Ανάληψη'}</Text>
                 </Pressable>
