@@ -52,7 +52,7 @@ export default class Task extends React.Component {
         } else {
             alert("Couldn't retrieve user data!");
         }
-        setTimeout(() => this.fetchTasks(), 1000);
+        setTimeout(() => this.fetchTasks(), 10000);
     }
     componentDidMount() {
         this.fetchTasks();

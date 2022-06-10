@@ -12,7 +12,7 @@ export default class Earn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 1,
+            page: this.props.userData.level,
             media: 'none'
         }
         this.setPage = this.setPage.bind(this);
@@ -28,7 +28,7 @@ export default class Earn extends React.Component {
 		this.props.refreshUserData();
     }
     render() {
-        var enabled= (this.props.userData.level === this.state.page);
+        var enabled= (this.props.userData.level < this.state.page);
         var main;
         if (this.state.media==='none') {
             main = (

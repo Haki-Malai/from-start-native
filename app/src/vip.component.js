@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import Navigator from './navigator.component';
-import Level from './level.component';
+import Level from './vip/level.component';
 import Top from './vip/top.component';
 import styles from '../style';
 
@@ -18,7 +18,9 @@ export default class Vip extends React.Component {
     render() {
         var levels = [];
         for (let i=1; i<this.props.level.length; i++) {
-            levels.push(<Level userData={this.props.userData} lang={this.props.lang} level={i+1} value={this.props.level[i][0]} daily={this.props.level[i][1]} buy={this.props.level[i][2]}></Level>)   
+            if (i >= this.props.userData.level) {
+                levels.push(<Level userData={this.props.userData} lang={this.props.lang} level={i+1} value={this.props.level[i][0]} daily={this.props.level[i][1]} buy={this.props.level[i][2]} username={this.props.userData.username}></Level>);
+            } 
         }
         return(
             <View style={styles.container}>
